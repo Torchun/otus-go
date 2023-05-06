@@ -20,3 +20,33 @@ Hello, OTUS!
 
 ### Подсказки
 - `Reverse`
+
+
+## Commands
+
+ - Пишем код:
+```
+gofmt -w main.go
+go run main.go
+```
+
+ - Проверияем что все ок:
+```
+golangci-lint run .
+```
+
+ - ` --- когда не срабоатет ---`
+```
+go install github.com/daixiang0/gci@latest
+gci write --skip-generated  .
+# или
+golangci-lint run --fix
+```
+
+ - После исправлений перепроверям:
+```
+go mod tidy
+gofmt -w main.go
+go run main.go
+```
+
