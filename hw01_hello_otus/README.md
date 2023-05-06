@@ -48,5 +48,7 @@ golangci-lint run --fix
 go mod tidy
 gofmt -w main.go
 go run main.go
+go test -v -count=1 -race -timeout=1m . # если есть тесты
+./test.sh # если есть test.sh 
 ```
 
