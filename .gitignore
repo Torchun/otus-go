@@ -26,3 +26,9 @@ ehthumbs.db
 Thumbs.db
 .vscode/
 *.bak
+
+# exclude vim temp files
+*.sw?
+
+# exclude go itself
+go1.21.1
