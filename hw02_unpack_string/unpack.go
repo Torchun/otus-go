@@ -1,7 +1,5 @@
 package hw02unpackstring
 
-//package main
-
 import (
 	"errors"
 	"strconv"
@@ -29,13 +27,13 @@ func Unpack(input string) (string, error) {
 
 		// first+ rune is not a number, keep it as is
 		case i+1 < len(runes) && !unicode.IsDigit(runes[i]) && !unicode.IsDigit(runes[i+1]):
-			result = result + string(runes[i])
+			result += string(runes[i])
 
 		// +0 and +1 runes are notDigit and isDigit, so repeat +0 rune +1 times
 		case i+1 < len(runes) && !unicode.IsDigit(runes[i]) && unicode.IsDigit(runes[i+1]):
 			times, _ := strconv.Atoi(string(runes[i+1]))
-			result = result + strings.Repeat(string(runes[i]), times)
-			i = i + 1 // skip rune with times itself
+			result += strings.Repeat(string(runes[i]), times)
+			i++ // skip rune with times itself
 
 		// first rune not a number
 		case i == 0:
@@ -47,7 +45,7 @@ func Unpack(input string) (string, error) {
 
 		// if last rune is not a number - keep it as is
 		case i+1 == len(runes) && !unicode.IsDigit(runes[i]):
-			result = result + string(runes[i])
+			result += string(runes[i])
 		}
 	}
 	return result, nil
