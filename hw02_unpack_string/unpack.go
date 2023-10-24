@@ -36,12 +36,9 @@ func Unpack(input string) (string, error) {
 			i++ // skip rune with times itself
 
 		// first rune not a number
-		case i == 0:
-			check, err := strconv.Atoi(string(runes[i]))
-			if err == nil {
-				message := "First rune cannot be a number:" + strconv.Itoa(check)
-				return message, ErrInvalidString
-			}
+		case i == 0 && unicode.IsDigit(runes[i]):
+			message := "First rune cannot be a number:" + string(runes[i])
+			return message, ErrInvalidString
 
 		// if last rune is not a number - keep it as is
 		case i+1 == len(runes) && !unicode.IsDigit(runes[i]):
