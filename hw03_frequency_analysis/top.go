@@ -13,33 +13,33 @@ type kv struct {
 func Top10(input string) []string {
 	result := make([]string, 0, 10)
 	// split into words by whitespaces
-	tmp_slice := strings.Fields(input)
-	// make map to store word occurance count, e.g. {"word": 3}
-	word_stat := make(map[string]int)
+	tmpSlice := strings.Fields(input)
+	// make map to store word occurrence count, e.g. {"word": 3}
+	wordStat := make(map[string]int)
 	// collect each word count
-	for _, word := range tmp_slice {
-		word_stat[word]++
+	for _, word := range tmpSlice {
+		wordStat[word]++
 	}
-	// make array of map-like stucts with len=0 and capacity equal to word_stat
-	sorted_slice := make([]kv, 0, len(word_stat))
-	for k, v := range word_stat {
-		sorted_slice = append(sorted_slice, kv{k, v})
+	// make array of map-like stucts with len=0 and capacity equal to wordStat
+	sortedSlice := make([]kv, 0, len(wordStat))
+	for k, v := range wordStat {
+		sortedSlice = append(sortedSlice, kv{k, v})
 	}
 	// sort array by each map value
-	sort.Slice(sorted_slice, func(i, j int) bool {
+	sort.Slice(sortedSlice, func(i, j int) bool {
 		// if word freq equal
-		if sorted_slice[i].value == sorted_slice[j].value {
+		if sortedSlice[i].value == sortedSlice[j].value {
 			// return first by asc alphabet order
-			return sorted_slice[i].key < sorted_slice[j].key
+			return sortedSlice[i].key < sortedSlice[j].key
 		}
 		// by default return greater count word
-		return sorted_slice[i].value > sorted_slice[j].value
+		return sortedSlice[i].value > sortedSlice[j].value
 	})
 	// get first 10 elems via reverse iteration over sorted array
-	for i := range sorted_slice {
+	for i := range sortedSlice {
 		// need 10 elems, started with 0 and not including last mentioned index
 		if i < 10 {
-			result = append(result, sorted_slice[i].key)
+			result = append(result, sortedSlice[i].key)
 		}
 	}
 	return result
