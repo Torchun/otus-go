@@ -1,7 +1,6 @@
 package hw03frequencyanalysis
 
 import (
-	"fmt"
 	"sort"
 	"strings"
 )
@@ -28,18 +27,20 @@ func Top10(input string) []string {
 	}
 	// sort array by each map value
 	sort.Slice(sorted_slice, func(i, j int) bool {
-		return sorted_slice[i].value < sorted_slice[j].value
+		// if word freq equal
+		if sorted_slice[i].value == sorted_slice[j].value {
+			// return first by asc alphabet order
+			return sorted_slice[i].key < sorted_slice[j].key
+		}
+		// by default return greater count word
+		return sorted_slice[i].value > sorted_slice[j].value
 	})
-	// get last 10 elems via reverse iteration over sorted array
-	last_index := len(sorted_slice) - 1
+	// get first 10 elems via reverse iteration over sorted array
 	for i := range sorted_slice {
-		if i < 9 {
-			result = append(result, sorted_slice[last_index-i].key)
+		// need 10 elems, started with 0 and not including last mentioned index
+		if i < 10 {
+			result = append(result, sorted_slice[i].key)
 		}
 	}
-
-	fmt.Println(word_stat)
-	fmt.Println(sorted_slice)
-	fmt.Println(result)
 	return result
 }
