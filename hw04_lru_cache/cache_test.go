@@ -1,7 +1,6 @@
 package hw04lrucache
 
 import (
-	"fmt"
 	"math/rand"
 	"strconv"
 	"sync"
@@ -52,7 +51,6 @@ func TestCache(t *testing.T) {
 
 	t.Run("purge logic", func(t *testing.T) {
 		c := NewCache(2)
-		fmt.Println(c)
 
 		wasInCache := c.Set("aaa", 100)
 		require.False(t, wasInCache)
