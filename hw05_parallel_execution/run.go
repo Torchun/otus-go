@@ -2,7 +2,6 @@ package hw05parallelexecution
 
 import (
 	"errors"
-	"fmt"
 	"sync"
 )
 
@@ -45,10 +44,8 @@ func Run(tasks []Task, n, m int) (err error) {
 				break
 			}
 		}
-		fmt.Println("Run: ", index, &task)
 		// will be waiting until someone take proposed task, sequentially
 		tasksChannel <- task
-		fmt.Println("tasksChannel: ", len(tasksChannel))
 	}
 
 	// means all tasks are taken
@@ -71,8 +68,6 @@ func Runner(wg *sync.WaitGroup, m int, tasksChannel chan Task, errorsChannel cha
 	// do single task
 	// don't forget to close self in WaitGroup
 	defer wg.Done()
-	fmt.Println("tasksChannel: ", len(tasksChannel))
-
 	// infinite loop to read from channel
 	for {
 		// round robin on performable cases
@@ -85,7 +80,6 @@ func Runner(wg *sync.WaitGroup, m int, tasksChannel chan Task, errorsChannel cha
 			}
 			// execute task (task is a function)
 			err := task()
-			fmt.Println("runner: ", m, ok, err)
 			// check if error retrieved
 			if err != nil {
 				// exit if error count exceeded allowed cap of m errors
