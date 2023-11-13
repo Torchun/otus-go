@@ -79,6 +79,7 @@ nil <- (prev) front <-> ... <-> elem <-> ... <-> back (next) -> nil
 - https://en.wikipedia.org/wiki/Doubly_linked_list
 - https://ru.bmstu.wiki/LRU_(Least_Recently_Used)
 - `sync.Mutex`
+- [https://cs.opensource.google/go/go/+/refs/tags/go1.21.3:src/container/list/list.go](https://cs.opensource.google/go/go/+/refs/tags/go1.21.3:src/container/list/list.go)
 
 ### Частые ошибки
 1) В задании со звёздочкой забывают про синхронизацию в методе Clear кэша.
