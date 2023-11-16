@@ -82,3 +82,13 @@
 
 **Решение**: внимательно посмотреть места выхода из функции и гарантировать, что все порождённые вами горутины
 завершились к этому моменту.
+
+
+### = = = = = = = = = = = = = 
+##### Useful links:
+ - [https://go.dev/tour/concurrency/5](https://go.dev/tour/concurrency/5)
+ - [https://go.dev/tour/flowcontrol/4](https://go.dev/tour/flowcontrol/4)
+ - [https://metanit.com/go/tutorial/7.7.php](https://metanit.com/go/tutorial/7.7.php)
+
+### Check:
+ - `go test -v -count=1 -race -timeout=1m .`
