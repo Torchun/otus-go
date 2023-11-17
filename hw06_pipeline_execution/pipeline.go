@@ -1,10 +1,5 @@
 package hw06pipelineexecution
 
-import (
-	"fmt"
-	"reflect"
-)
-
 type (
 	In  = <-chan interface{}
 	Out = In
@@ -14,45 +9,38 @@ type (
 type Stage func(in In) (out Out)
 
 func ExecutePipeline(in In, done In, stages ...Stage) Out {
-	// Place your code here.
 	// each call got current (!same!) value
 	recv := in
-	fmt.Println("recv: ", reflect.TypeOf(recv))
-	fmt.Println(recv)
 
 	for _, stage := range stages {
-
+		// execute each stage computing
 		stg := stage(recv)
-		fmt.Println("stg: ", reflect.TypeOf(stg))
-		fmt.Println(stg)
-
-		recv = executeStage(stg, done)
-		fmt.Println("stage: ", reflect.TypeOf(stage))
-		fmt.Println(stage)
-
+		// recv will contain formatted result of prev.stage calculations
+		// executeUnderControl should be able to stop on signal in done channel
+		recv = executeUnderControl(stg, done)
 	}
 	return recv
 }
 
-func executeStage(recv In, done In) Out {
+func executeUnderControl(stg In, done In) Out {
+	// to comply with expected type
 	send := make(Bi)
 	go func() {
 		defer close(send)
-		fmt.Println("func send: ", reflect.TypeOf(send))
-		fmt.Println(send)
+		// infinite wait until (stg or done) chan can be read
 		for {
 			select {
-			case v, ok := <-recv:
-				fmt.Println("v, ok: ", reflect.TypeOf(v), ok)
-				fmt.Println(v)
+			// if can read from stage (one int per stage)
+			case v, ok := <-stg:
 				if !ok {
+					// after once read will end goroutine
 					return
 				}
-				fmt.Println(ok, v)
+				// will be done once
 				send <- v
+			// for "done case" in pipeline_test - return immediately when got signal
+			// that's why executeUnderControl needed
 			case <-done:
-				fmt.Println("done: ", reflect.TypeOf(done))
-				fmt.Println(done)
 				return
 			}
 		}
