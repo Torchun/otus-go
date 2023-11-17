@@ -38,3 +38,4 @@ func Stage(in <-chan interface{}) (out <-chan interface{}) {
 
 ### Useful links
  - [https://www.geeksforgeeks.org/how-to-use-ellipsis-in-golang/](https://www.geeksforgeeks.org/how-to-use-ellipsis-in-golang/)
+ - `go test -v -count=1 -race -timeout=10s .`
