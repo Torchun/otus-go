@@ -11,5 +11,12 @@ var (
 
 func Copy(fromPath, toPath string, offset, limit int64) error {
 	// Place your code here.
+
+	// open source file
+	// check it's length to omit unlimited files like /dev/urandom
+	// open or create destination file
+	// seek for and check offset
+	//
+
 	return nil
 }

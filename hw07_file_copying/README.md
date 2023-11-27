@@ -35,3 +35,9 @@
 - `os.OpenFile`, `os.Create`, `os.FileMode`
 - `io.CopyN`
 - `os.CreateTemp`
+
+### useful links
+ - [https://stackoverflow.com/a/50312711](https://stackoverflow.com/a/50312711)
+ - [https://pkg.go.dev/os#File.Seek](https://pkg.go.dev/os#File.Seek)
+ - [https://pkg.go.dev/io#CopyN](https://pkg.go.dev/io#CopyN)
+ - 
