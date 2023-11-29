@@ -40,4 +40,9 @@
  - [https://stackoverflow.com/a/50312711](https://stackoverflow.com/a/50312711)
  - [https://pkg.go.dev/os#File.Seek](https://pkg.go.dev/os#File.Seek)
  - [https://pkg.go.dev/io#CopyN](https://pkg.go.dev/io#CopyN)
- - 
+
+### useful commands
+```azure
+go get github.com/cheggaaa/pb/v3
+go get github.com/stretchr/testify/require
+```
