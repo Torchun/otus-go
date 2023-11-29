@@ -3,10 +3,11 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/cheggaaa/pb/v3"
 	"io"
 	"os"
 	"time"
+
+	"github.com/cheggaaa/pb/v3"
 )
 
 var (
@@ -47,7 +48,7 @@ func Copy(fromPath, toPath string, offset, limit int64) error {
 		// new size to be copied
 		if offset+limit > scrSize {
 			// file size exceeded, ignore limit
-			scrSize = scrSize - offset
+			scrSize -= offset
 		} else {
 			// file size is not exceeded, limit should be used
 			scrSize = limit
