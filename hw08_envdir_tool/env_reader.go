@@ -29,7 +29,7 @@ func ReadDir(dir string) (Environment, error) {
 		return nil, err
 	}
 
-	//read current directory's content
+	// read current directory's content
 	for _, item := range readDir {
 		// имя S не должно содержать =;
 		name := strings.ReplaceAll(item.Name(), "=", "")
