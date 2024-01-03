@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/require" //nolint: revive
+	"github.com/stretchr/testify/require" //nolint:revive
 )
 
 type UserRole string
@@ -48,7 +48,7 @@ func TestValidate(t *testing.T) {
 				Version: "1",
 			},
 			expectedErr: fmt.Errorf(
-				"field: Version | err: tagStringValidate len error - tag validation case mismatch\n", //nolint: revive
+				"field: Version | err: tagStringValidate len error - tag validation case mismatch\n", //nolint:revive
 			),
 		},
 		{
@@ -63,7 +63,7 @@ func TestValidate(t *testing.T) {
 				Code: 503,
 			},
 			expectedErr: fmt.Errorf(
-				"field: Code | err: tagIntValidate in error - tag validation case subset len mismatch\n"), //nolint: revive
+				"field: Code | err: tagIntValidate in error - tag validation case subset len mismatch\n"), //nolint:revive
 		},
 		{
 			in: Token{
