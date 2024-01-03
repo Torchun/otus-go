@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/require" //nolint:revive
+	"github.com/stretchr/testify/require"
 )
 
 type UserRole string
