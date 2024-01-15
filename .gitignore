@@ -32,3 +32,6 @@ Thumbs.db
 
 # exclude go itself
 go1.21.1
+
+# exclude temp dir
+tmp
