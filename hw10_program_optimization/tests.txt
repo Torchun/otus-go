@@ -1,0 +1,64 @@
+0. initial:
+
+=== RUN   TestGetDomainStat_Time_And_Memory
+    stats_optimization_test.go:46: time used: 406.742443ms / 300ms
+    stats_optimization_test.go:47: memory used: 308Mb / 30Mb
+    assertion_compare.go:332:
+                Error Trace:    stats_optimization_test.go:49
+                Error:          "406742443" is not less than "300000000"
+                Test:           TestGetDomainStat_Time_And_Memory
+                Messages:       [the program is too slow]
+--- FAIL: TestGetDomainStat_Time_And_Memory (8.52s)
+FAIL
+FAIL    github.com/Torchun/otus-go/hw10_program_optimization    8.523s
+FAIL
+
+
+
+1. easyjson:
+//// line 10:
+//easyjson:json
+//// line 42:
+// if err = user.UnmarshalJSON([]byte(line)); err != nil {
+
+=== RUN   TestGetDomainStat_Time_And_Memory
+    stats_optimization_test.go:46: time used: 272.907037ms / 300ms
+    stats_optimization_test.go:47: memory used: 276Mb / 30Mb
+    assertion_compare.go:332:
+                Error Trace:    stats_optimization_test.go:50
+                Error:          "290240680" is not less than "31457280"
+                Test:           TestGetDomainStat_Time_And_Memory
+                Messages:       [the program is too greedy]
+--- FAIL: TestGetDomainStat_Time_And_Memory (4.27s)
+FAIL
+FAIL    github.com/Torchun/otus-go/hw10_program_optimization    4.272s
+FAIL
+
+
+
+2. new scanner - bufio:
+
+=== RUN   TestGetDomainStat_Time_And_Memory
+    stats_optimization_test.go:46: time used: 243.775182ms / 300ms
+    stats_optimization_test.go:47: memory used: 143Mb / 30Mb
+    assertion_compare.go:332:
+                Error Trace:    stats_optimization_test.go:50
+                Error:          "150592592" is not less than "31457280"
+                Test:           TestGetDomainStat_Time_And_Memory
+                Messages:       [the program is too greedy]
+--- FAIL: TestGetDomainStat_Time_And_Memory (3.69s)
+FAIL
+FAIL    github.com/Torchun/otus-go/hw10_program_optimization    3.690s
+FAIL
+
+
+
+3. regex from match to (pre-)compile:
+
+=== RUN   TestGetDomainStat_Time_And_Memory
+    stats_optimization_test.go:46: time used: 124.821316ms / 300ms
+    stats_optimization_test.go:47: memory used: 13Mb / 30Mb
+--- PASS: TestGetDomainStat_Time_And_Memory (1.39s)
+PASS
+ok      github.com/Torchun/otus-go/hw10_program_optimization    1.393s
+
