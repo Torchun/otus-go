@@ -50,3 +50,24 @@ go test -v -count=1 -timeout=30s -tags bench .
 - Работа с сырыми байтами, нахождение позиции `"Email"` и пр. вместо ускорения анмаршалинга более поддерживаемыми и понятными средствами.
 
 #### Зачёт от 7 баллов
+
+# Useful commands
+profiling:
+```azure
+go test -bench=. -gcflags=-N -cpuprofile=cpu.out -memprofile=mem.out .
+```
+
+explore:
+```azure
+go tool pprof -http=":9999" bench.test cpu.out
+```
+
+install easyjson:
+```azure
+go get github.com/mailru/easyjson && go install github.com/mailru/easyjson/...@latest
+```
+
+generate <file>_easyjson.go
+```azure
+easyjson -all stats.go
+```
