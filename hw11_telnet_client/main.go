@@ -16,10 +16,11 @@ import (
 
 var timeout time.Duration
 
-// Optional flag, will be executed on import, can be overwritten by "--timeout=5s" flag
+// Optional flag, will be executed on import, can be overwritten by "--timeout=5s" flag.
 func init() {
 	flag.DurationVar(&timeout, "timeout", 10, "default timeout duration")
 }
+
 func main() {
 	flag.Parse()
 	// ["go-telnet", "--timeout=5s", "localhost", "4242"]
@@ -75,7 +76,7 @@ func tcpsend(ctx context.Context, stop context.CancelFunc, wg *sync.WaitGroup, i
 		err = t.Send()
 		if err != nil {
 			fmt.Println(err)
-			//stop()
+			// stop()
 			return
 		}
 	}
@@ -91,7 +92,7 @@ func conncontrol(ctx context.Context, wg *sync.WaitGroup, t TelnetClient) {
 	for {
 		select {
 		case <-ctx.Done():
-			//fmt.Println("ctx.Done() poped")
+			// fmt.Println("ctx.Done() poped")
 			// main interrupted by syscall (Ctrl+C)
 			// deferred wg.Done() executed (wg delta -1)
 			return

@@ -16,7 +16,7 @@ type TelnetClient interface {
 	Receive() error
 }
 
-// ConnectionParams define & reuse same memory
+// ConnectionParams define & reuse same memory.
 type ConnectionParams struct {
 	Address string
 	Timeout time.Duration
@@ -56,6 +56,7 @@ func (t *ConnectionParams) Close() error {
 
 	return nil
 }
+
 func (t *ConnectionParams) Send() error {
 	_, err := io.Copy(t.Conn, t.In)
 	if err != nil {
