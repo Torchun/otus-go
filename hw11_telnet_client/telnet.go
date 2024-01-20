@@ -37,7 +37,7 @@ func NewTelnetClient(address string, timeout time.Duration, in io.ReadCloser, ou
 }
 
 func (t *ConnectionParams) Connect() error {
-	conn, err := net.Dial("tcp", t.Address)
+	conn, err := net.DialTimeout("tcp", t.Address, t.Timeout)
 	if err != nil {
 		return fmt.Errorf("connection error: %w", err)
 	}
@@ -49,9 +49,11 @@ func (t *ConnectionParams) Connect() error {
 }
 
 func (t *ConnectionParams) Close() error {
-	err := t.Conn.Close()
-	if err != nil {
-		return fmt.Errorf("connection close error: %w", err)
+	if t.Conn != nil {
+		err := t.Conn.Close()
+		if err != nil {
+			return fmt.Errorf("connection close error: %w", err)
+		}
 	}
 
 	return nil
