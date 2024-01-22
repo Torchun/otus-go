@@ -66,7 +66,7 @@ func tcpsend(ctx context.Context, stop context.CancelFunc, wg *sync.WaitGroup, i
 		resp, err := reader.ReadString('\n')
 		// fmt.Println(resp, err)
 		if err != nil {
-			fmt.Println(err)
+			// fmt.Println(err)
 			// pass signal to close ctx
 			stop()
 			return
